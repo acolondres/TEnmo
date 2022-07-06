@@ -25,7 +25,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public int findIdByUsername(String username) {
+    public int findIdByUsername(String username) { // VERY IMPORTANT FOR PROJECT
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
 
         int userId;
