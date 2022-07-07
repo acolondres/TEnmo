@@ -58,8 +58,16 @@ public class JdbcAccountDao implements AccountDao {
         }return account;
     }
 
+    @Override
+    public void updateAccount(Account accountToUpdate) {
+        String sql = "UPDATE accounts " +
+                " SET balance = ? " +
+                " WHERE account_id = ? ";
+        jdbcTemplate.update(sql, accountToUpdate.getBalance(), accountToUpdate.getAccountId());
+    }
 
-private Account mapResultsToAccount(SqlRowSet results) {
+
+    private Account mapResultsToAccount(SqlRowSet results) {
     int accountId = results.getInt("account_id");
     int userId = results.getInt("user_id");
     Balance balance = new Balance();

@@ -9,4 +9,6 @@ public interface AccountDao {
     Account getAccountByUserId(int userId);
     Account getAccountByAccId(int accountId);
 
+    void updateAccount(Account accountToUpdate);
+
 }
