@@ -16,12 +16,14 @@ public class JdbcTransferDao implements TransferDao {
     public JdbcTransferDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    private static final int APPROVED = 2;
+    private static final int SENT = 2;
 
     @Override
     public void newTransfer(Transfer transfer) {
-        String sql = "INSERT INTO tenmo_transfer (transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
-                " VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, transfer.getTransferId(), transfer.getTransferTypeId(), transfer.getTransferStatusId(), transfer.getAccountFrom(), transfer.getAmount(), transfer.getAccountInto());
+        String sql = "INSERT INTO tenmo_transfer (transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
+                " VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, SENT, APPROVED, transfer.getAccountFrom(), transfer.getAccountInto(), transfer.getAmount());
         
     }
 
