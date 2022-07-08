@@ -19,7 +19,7 @@ public class JdbcTransferDao implements TransferDao {
 
     @Override
     public void newTransfer(Transfer transfer) {
-        String sql = "INSERT INTO transfer (transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
+        String sql = "INSERT INTO tenmo_transfer (transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount) " +
                 " VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, transfer.getTransferId(), transfer.getTransferTypeId(), transfer.getTransferStatusId(), transfer.getAccountFrom(), transfer.getAmount(), transfer.getAccountInto());
         
@@ -28,7 +28,7 @@ public class JdbcTransferDao implements TransferDao {
     @Override
     public List<Transfer> getTransferUserId(int userId) {
         String sql = "SELECT transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount " +
-                "FROM transfer " +
+                "FROM tenmo_transfer " +
                 "WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         List<Transfer> transfers = new ArrayList<>();
@@ -42,7 +42,7 @@ public class JdbcTransferDao implements TransferDao {
     @Override
     public Transfer getTransferId(int transferId) {
         String sql = "SELECT transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount " +
-                "FROM transfer " +
+                "FROM tenmo_transfer " +
                 "WHERE transfer_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, transferId);
         Transfer transfer = null;
@@ -55,7 +55,7 @@ public class JdbcTransferDao implements TransferDao {
     @Override
     public List<Transfer> getAllTransfer() {
         String sql = "SELECT transfer_id, transfer_type_id, transfer_status_id, account_from, account_to, amount " +
-                "FROM transfer";
+                "FROM tenmo_transfer";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         List<Transfer> transfers = new ArrayList<>();
         while(results.next()){
@@ -66,7 +66,7 @@ public class JdbcTransferDao implements TransferDao {
 
     @Override
     public void updateTransfer(Transfer transfer) {
-        String sql = " UPDATE transfers " +
+        String sql = " UPDATE tenmo_transfer " +
                      " SET transfer_status_id = ? " +
                      " WHERE transfer_id = ?;";
 

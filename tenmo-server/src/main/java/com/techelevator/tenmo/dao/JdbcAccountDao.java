@@ -50,7 +50,7 @@ public class JdbcAccountDao implements AccountDao {
 
         String sql = " Select account_id, user_id, balance "+
                 " FROM tenmo_account"+
-                " WHERE account_id";
+                " WHERE account_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql,accountId);
         Account account = null;
         if(results.next()){
@@ -60,7 +60,7 @@ public class JdbcAccountDao implements AccountDao {
 
     @Override
     public void updateAccount(Account accountToUpdate) {
-        String sql = "UPDATE accounts " +
+        String sql = "UPDATE tenmo_account " +
                 " SET balance = ? " +
                 " WHERE account_id = ? ";
         jdbcTemplate.update(sql, accountToUpdate.getBalance(), accountToUpdate.getAccountId());
