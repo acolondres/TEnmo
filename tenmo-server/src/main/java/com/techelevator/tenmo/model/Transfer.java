@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Transfer {
     // amount of transfer
     // account from (user_id)
-    // account too
+    // account to ETC. follow ERD
     private BigDecimal amount;
     private int accountFrom;
     private int accountInto;

@@ -9,6 +9,7 @@ public interface AccountDao {
     Account getAccountByUserId(int userId);
     Account getAccountByAccId(int accountId);
 
+    //model Account, void
     void updateAccount(Account accountToUpdate);
 
 }

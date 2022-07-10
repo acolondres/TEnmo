@@ -1,9 +1,8 @@
 package com.techelevator.tenmo.model;
 
-import com.techelevator.tenmo.security.InsufficientFunds;
-
 import java.math.BigDecimal;
 
+//USE BIG DECIMAL TO GET ACCURATE BALANCE
 public class Balance {
 
     private BigDecimal balance;
@@ -17,12 +16,12 @@ public class Balance {
     }
 
     //SEND - throws exception to insufficient funds (security) exception
-    public void sendMoney(BigDecimal amount) throws InsufficientFunds {
+    public void sendMoney(BigDecimal amount) throws InsufficientFundsException {
         BigDecimal newBalance = new BigDecimal(String.valueOf(balance)).subtract(amount);
         if (newBalance.compareTo(BigDecimal.ZERO) >= 0) {
             this.balance = newBalance;
         } else {
-            throw new InsufficientFunds();
+            throw new InsufficientFundsException();
         }
 
     }
